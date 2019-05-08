@@ -51,12 +51,22 @@ public class MainActivity extends AppCompatActivity {
 
         GoogleSignInClient signIncleint = GoogleSignIn.getClient(this,
                 new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).build());
-
+        final GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
 
         mConnectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startSignInIntent();
+                // Configure sign-in to request the user's ID, email address, and basic
+// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+                
+// Build a GoogleSignInClient with the options specified by gso.
+                GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+                private void signIn() {
+                    Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+                    startActivityForResult(signInIntent, 9001);
+                }
             }
         });
 
@@ -83,11 +93,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void startSignInIntent() {
-        GoogleSignInClient signInClient = GoogleSignIn.getClient(this,
-                GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN);
-        Intent intent = signInClient.getSignInIntent();
+        GoogleSignInClient signIncleint = GoogleSignIn.getClient(this,
+                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).build());
+        Intent intent = signIncleint.getSignInIntent();
         startActivityForResult(intent, 9001);
     }
+
+    /*@Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+    }
+
+    */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
