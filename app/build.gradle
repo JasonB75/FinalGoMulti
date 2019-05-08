@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        Multi {
+            keyAlias 'testmulti'
+            keyPassword 'i8thecake4u'
+            storeFile file('C:/Users/jbaldwin/Desktop/keystores-20190508T133809Z-001/keystores/upload_Keystores.jks')
+            storePassword '1mYsterious!redundantSidwalk'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "comjasonb75.finalgomulti"

@@ -45,8 +45,13 @@ public class MainActivity extends AppCompatActivity {
         mSendEdit = findViewById(R.id.editText);
         mIdText = findViewById(R.id.textView3);
 
+
+
+       // GoogleSignInOptions signInOptions = GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN;
+
         GoogleSignInClient signIncleint = GoogleSignIn.getClient(this,
                 new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).build());
+
 
         mConnectButton.setOnClickListener(new View.OnClickListener() {
             @Override
